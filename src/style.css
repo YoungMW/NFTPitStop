@@ -1,0 +1,535 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background: url("./assets/landscape.jpg") no-repeat center center/cover;
+  height: fit-content;
+  background-attachment: fixed;
+}
+
+/* ========================================NavBar===========================================*/
+.Navbar {
+  height: 7vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #b96a0b;
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 21px;
+  margin: 15px;
+  color: #ffffff;
+}
+
+.navBar--links {
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 15px;
+  position: relative;
+  opacity: 0.9;
+}
+
+.navBar--links::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.5s;
+}
+
+.navBar--links:hover::before {
+  width: 100%;
+}
+
+/* =========================================================================================*/
+/* ========================================Home Page===========================================*/
+
+.home--page {
+  /* background: url("./assets/landscape.jpg") no-repeat center center/cover; */
+  height: 93vh;
+}
+/*=========================================================================================*/
+
+.overview--nft--app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 93vh;
+}
+
+#root {
+  height: 100%;
+}
+.nft--app {
+  width: 100%;
+  height: 93vh;
+  color: rgb(255, 255, 255);
+  /* position: relative; */
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+/* .nft--app:before {
+  content: "";
+  background: url("./assets/landscape.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0%;
+  z-index: -1;
+} */
+
+.search--bar {
+  margin-right: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search--input {
+  margin-top: 20px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8f8f8;
+}
+
+.icon--search {
+  margin-top: 20px;
+  margin-left: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: ease-out;
+}
+.icon--search:hover {
+  scale: 1.25;
+}
+
+::placeholder {
+  color: #f8f8f8;
+}
+
+.container {
+  max-width: 100%;
+  margin: auto;
+  padding: 0 1rem;
+  position: relative;
+  top: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* ==============================Right Section====================== */
+.right--section-header {
+  font-size: 2vw;
+}
+
+.right--section--container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 20%;
+  padding: 1rem;
+}
+
+/* ==============================Middle Section====================== */
+
+.middle--section--header {
+  font-size: 3vw;
+}
+
+.middle--section--container {
+  width: 60%;
+}
+
+/* ==============================Left Section====================== */
+.left-section-header {
+  font-size: 2vw;
+}
+
+.left--section--collectorDetails {
+  width: 15%;
+  padding: 1rem;
+}
+
+/* ==============================MAIN NFT Section====================== */
+
+.nft--collection {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
+  grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.no--nft-collection--title {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.no--nft--collection {
+  height: 50vh;
+  font-size: 3vw;
+  background: url("./assets/baycnft.png") no-repeat center center/cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.nft--images {
+  max-width: 100%;
+  margin-left: 0px;
+  border-radius: 15px;
+}
+
+.nft--images:hover {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.nft--card {
+  border: 2px solid black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 3px 3px rgba(37, 37, 37, 0.4);
+  border-radius: 15px;
+}
+
+.nft--card:hover {
+  scale: 0.95;
+}
+
+.nft--card--description--container {
+  height: 100%;
+  background-color: rgba(139, 139, 139, 0.8);
+  border-top: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.description-mini-headers {
+  color: #35363b;
+  font-size: 1vw;
+  font-weight: 600;
+  margin-top: 10%;
+}
+
+.description-mini-texts {
+  color: #212123;
+  font-size: 0.8vw;
+  font-weight: 100;
+}
+
+.nft--card--description--right--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.nft--card--description--left--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+/* ==================================Modal Design=================================== */
+.modal--image--container {
+  width: 100%;
+}
+
+.modal--image {
+  height: 100%;
+  width: 100%;
+}
+
+.modal--closeButton {
+  background: transparent;
+  border: 0px solid;
+  outline: none;
+  cursor: pointer;
+  font-size: 4vw;
+  font-weight: bold;
+  margin-left: 50px;
+  color: black;
+  position: fixed;
+  top: 3%;
+  right: 3%;
+}
+
+.modal--closeButton:hover {
+  scale: 0.8;
+  filter: invert(0.5);
+}
+
+.overlay {
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modal--container {
+  max-width: 100%;
+  width: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 20px 0px rgba(255, 0, 0, 0.8);
+}
+
+.modal--Right {
+  width: 100%;
+}
+
+.title--box {
+  display: flex;
+  flex-direction: row;
+  color: #35363b;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.title--header {
+  font-size: 3vw;
+  font-weight: 600;
+  margin-right: 3%;
+}
+
+.modal--title {
+  font-size: 3vw;
+}
+
+.modal--nft--contract--address {
+  color: #35363b;
+  margin-left: 10%;
+  font-size: 1.2vw;
+}
+
+.modal--nft--contract--address:hover {
+  font-size: 1vw;
+  color: blueviolet;
+}
+
+.nft--description {
+  margin-left: 10%;
+  margin-right: 10%;
+  color: #35363b;
+  font-size: 1.5vw;
+  margin-top: 5%;
+  font-style: italic;
+}
+
+.modal--grid--box {
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.modal--attributes--box {
+  color: #35363b;
+}
+
+.modal--attributes--box {
+  display: grid;
+  /* grid-gap: 2%; */
+  line-height: 150%;
+  display: grid;
+  grid-template-columns: repeat(2, 40%);
+  width: 100%;
+  justify-content: center;
+}
+
+.attri--type {
+  font-size: 1.2vw;
+  font-weight: 900;
+}
+
+.attri--value {
+  font-size: 1.2vw;
+}
+
+.addToWatchList--Button {
+  cursor: pointer;
+  color: rgb(219, 11, 25);
+  position: fixed;
+  top: 4%;
+  left: 3%;
+}
+
+.addToWatchList--Button:hover {
+  scale: 1.25;
+}
+
+/* ==================================Watch List=================================== */
+
+.watchListCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(139, 139, 139, 0.4);
+  box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+  margin-bottom: 5%;
+}
+
+.watchListCard:hover {
+  cursor: pointer;
+  background-color: rgb(0, 72, 255);
+  filter: invert(1);
+}
+
+.watchListCard--components {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.watchListImage {
+  width: 30%;
+}
+
+.watchListCard--Title {
+  font-size: 1vw;
+  margin-left: 5%;
+}
+
+.watchListCard--delete--button {
+  cursor: pointer;
+  color: #f1f1f1;
+  margin-right: 2%;
+}
+
+.watchListCard--Description {
+  font-size: 0.5vw;
+}
+
+/* ========================================WATCH LIST PAGE===========================================*/
+
+.watchListPage--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+.inidividual--watchListCards {
+  padding: 1rem;
+  width: 70vw;
+  background-color: #b96a0b;
+  height: 20vh;
+  display: flex;
+  margin-bottom: 2%;
+  border: 2px solid;
+}
+
+.watchListCard--image {
+  height: 100%;
+}
+
+.watchList--title--box {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.title--name--watchList {
+  font-size: 2vw;
+}
+
+.title--header--watchList {
+  font-size: 2vw;
+  margin-right: 1vw;
+  font-weight: 800;
+}
+
+.inidividual--watchListCard--center {
+  margin-left: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+
+.watchList--etherscan--text {
+  font-size: 1vw;
+}
+
+.main--desc {
+  font-size: 0.8vw;
+}
+
+.individual--watchListCard--right {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  height: 100%;
+  font-size: 1vw;
+  margin-top: 1.5%;
+  /* -webkit-writing-mode: vertical-rl; */
+}
+
+.statistics--right {
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+}
+
+.statistics--left {
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+}
+
+.price--change--30 {
+  margin-bottom: 20%;
+}
+
+.statistics--header {
+  font-weight: 800;
+}
+
+.average--price--box {
+  margin-bottom: 20%;
+}
+
+.statistics--report {
+  display: flex;
+  align-items: center;
+}
+
+.price--change--30--arrow--green {
+  color: rgb(8, 212, 8);
+}
+
+.price--change--30--arrow--red {
+  color: rgb(211, 8, 25);
+}
