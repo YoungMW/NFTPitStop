@@ -2,7 +2,7 @@ import React from "react";
 import { UilTrashAlt } from "@iconscout/react-unicons";
 
 const WatchList = (props) => {
-  const x = props.watchList;
+  const x = props.watchListApp;
   console.log(x);
   let nftListToWatch = x.map((data, i) => {
     return (

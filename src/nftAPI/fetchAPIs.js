@@ -84,6 +84,23 @@ const getNFTsMetaData = async (NFTs) => {
         },
       };
 
+      // setInterval(async () => {
+      //   const statisticsData = await fetch(
+      //     `https://api.nftport.xyz/v0/transactions/stats/${metadataJSON.contract.address}?chain=ethereum`,
+      //     options
+      //   )
+      //     .then((statisticsData) => statisticsData.json())
+      //     .catch((err) => console.error(err));
+
+      //   let nftStatistics;
+      //   if (statisticsData) {
+      //     nftStatistics = statisticsData;
+      //   } else {
+      //     nftStatistics = statisticsData.error.code;
+      //   }
+      //   console.log(nftStatistics);
+      // }, 2000);
+
       const statisticsData = await fetch(
         `https://api.nftport.xyz/v0/transactions/stats/${metadataJSON.contract.address}?chain=ethereum`,
         options
@@ -98,6 +115,7 @@ const getNFTsMetaData = async (NFTs) => {
         nftStatistics = statisticsData.error.code;
       }
       console.log(nftStatistics);
+      console.log(statisticsData);
 
       return {
         id: NFT.id.tokenId,
@@ -109,7 +127,8 @@ const getNFTsMetaData = async (NFTs) => {
         supply: totalSupply,
         tokenType: tokenType,
         // floorPrice: nftFloorPrice,
-        statisticsData: statisticsData,
+        // statisticsData: statisticsData,
+        statisticsData: nftStatistics,
       };
     })
   );
@@ -118,7 +137,8 @@ const getNFTsMetaData = async (NFTs) => {
 };
 
 //========================Fecthing the data from the above 3 APIs to consolidate meta data and floor price================================
-const fetchNFTs = async (owner, setNFTs, setCollectionSize, setLoading) => {
+
+const fetchNFTs = async (owner, setCollectionSize, setLoading, setNFTsApp) => {
   setLoading(true);
   try {
     const collectionSize = await getAddressNFTs(owner);
@@ -130,14 +150,13 @@ const fetchNFTs = async (owner, setNFTs, setCollectionSize, setLoading) => {
       const NFTs = await getNFTsMetaData(data.ownedNfts);
       //making sure that the metaData of NFTs fetched are fulfilled. Filter those our that arent fulfilled.
       let fulfilledNFTs = NFTs.filter((NFT) => NFT.status == "fulfilled");
-      setNFTs(fulfilledNFTs);
       setLoading(false);
+      setNFTsApp(fulfilledNFTs);
     } else {
-      setNFTs(null);
+      setNFTsApp(null);
     }
   } catch (e) {
     setLoading(false);
-    // setErrorScreen(true);
   }
 };
 

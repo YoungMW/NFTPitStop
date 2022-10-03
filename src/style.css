@@ -27,6 +27,11 @@ body {
   font-size: 21px;
   margin: 15px;
   color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-logo:hover {
+  cursor: pointer;
 }
 
 .navBar--links {
@@ -440,17 +445,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1vh;
+  margin-top: 5vh;
 }
 
 .inidividual--watchListCards {
   padding: 1rem;
   width: 70vw;
-  background-color: #b96a0b;
-  height: 20vh;
+  background-color: rgba(38, 38, 38, 0.5);
+  height: 25vh;
   display: flex;
   margin-bottom: 2%;
-  border: 2px solid;
+  border: 2px solid black;
+  color: #f1f1f1;
+  box-shadow: 3px 3px rgba(3, 3, 3, 0.4);
+  border-radius: 5px;
+  padding-left: 0;
+}
+
+.inidividual--watchListCards:hover {
+  cursor: pointer;
 }
 
 .watchListCard--image {
@@ -464,7 +477,7 @@ body {
 }
 
 .title--name--watchList {
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 .title--header--watchList {
@@ -477,12 +490,19 @@ body {
   margin-left: 3%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 50%;
+  margin-top: 1.5%;
+  width: 45%;
 }
 
 .watchList--etherscan--text {
   font-size: 1vw;
+  color: #f1f1f1;
+  text-decoration: underline;
+}
+
+.watchList--etherscan--text:hover {
+  font-size: 0.9vw;
+  color: blueviolet;
 }
 
 .main--desc {
@@ -492,10 +512,11 @@ body {
 .individual--watchListCard--right {
   display: flex;
   justify-content: space-around;
-  width: 30%;
+  width: 45%;
   height: 100%;
   font-size: 1vw;
   margin-top: 1.5%;
+  margin-left: 1.5%;
   /* -webkit-writing-mode: vertical-rl; */
 }
 
@@ -524,12 +545,21 @@ body {
 .statistics--report {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .price--change--30--arrow--green {
-  color: rgb(8, 212, 8);
+  color: rgb(0, 250, 0);
 }
 
 .price--change--30--arrow--red {
-  color: rgb(211, 8, 25);
+  color: rgb(247, 0, 0);
+}
+
+.watchListPageCard--delete--button {
+  cursor: pointer;
+  color: #f1f1f1;
+  left: 95%;
+  top: 80%;
+  position: relative;
 }

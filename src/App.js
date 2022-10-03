@@ -6,9 +6,16 @@ import NavBar from "./NavBar";
 import WatchListPage from "./pages/WatchListPage";
 
 export default function App() {
-  const [watchListData, setWatchListData] = useState([]);
+  const [NFTsApp, setNFTsApp] = useState(""); //setting NFT's meta data from fetchNFT()
+  const [watchListApp, setWatchListApp] = useState([]); //retrieving total number of NFTs from API
+  const [collectionSize, setCollectionSize] = useState("");
 
-  console.log(watchListData);
+  const handleRemoveWatchPageItem = (index) => {
+    const watchListPageArr = watchListApp.filter((d, i) => i !== index);
+    setWatchListApp(watchListPageArr);
+  };
+
+  console.log(NFTsApp);
 
   return (
     <div>
@@ -19,11 +26,25 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/nft"
-          element={<NFT setWatchListData={setWatchListData} />}
+          element={
+            <NFT
+              setNFTsApp={setNFTsApp}
+              NFTsApp={NFTsApp}
+              watchListApp={watchListApp}
+              setWatchListApp={setWatchListApp}
+              setCollectionSize={setCollectionSize}
+              collectionSize={collectionSize}
+            />
+          }
         />
         <Route
           path="/watchlistpage"
-          element={<WatchListPage watchListData={watchListData} />}
+          element={
+            <WatchListPage
+              watchListApp={watchListApp}
+              handleRemoveWatchPageItem={handleRemoveWatchPageItem}
+            />
+          }
         />
       </Routes>
     </div>

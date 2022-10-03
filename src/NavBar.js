@@ -1,10 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const NavBar = () => {
   //   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="Navbar">
-      <span className="nav-logo">NFTPitStop</span>
+      <NavLink className="nav-logo" to="/">
+        NFTPitStop
+      </NavLink>
       <div className="nav-items">
         <NavLink className="navBar--links" to="/">
           Home

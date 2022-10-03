@@ -36,9 +36,9 @@ const NFTCard = ({
             priceChange30,
             totalVolume,
             statistics,
+            supply,
           })
         }
-        // id={address}
       >
         <img className="nft--images" src={image} alt={"Images"}></img>
         <div className="nft--card--description--container">

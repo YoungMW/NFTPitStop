@@ -11,40 +11,45 @@ export default function NFT(props) {
   //====================================States==============================================
   const [owner, setOwner] = useState(
     //setting owner's NFT address
-    "0x90BBCbe91a042558ed9589ddf9f180E736886FC3"
+    ""
   );
-  const [inputValue, setInputValue] = useState(); //setting user's input value - owner address
-  const [NFTs, setNFTs] = useState(""); //setting NFT's meta data from fetchNFT()
-  const [collectionSize, setCollectionSize] = useState(""); //retrieving total number of NFTs from API
+  const [inputValue, setInputValue] = useState(""); //setting user's input value - owner address
   const [openModal, setOpenModal] = useState(false); //opening Modal - True or False
   const [openModalDetails, setOpenModalDetails] = useState(""); //opening Modal - True or False
-  const [watchList, setWatchList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  let NFTsApp = props.NFTsApp;
+  let setNFTsApp = props.setNFTsApp;
+  let watchListApp = props.watchListApp;
+  let setWatchListApp = props.setWatchListApp;
+  let collectionSize = props.collectionSize;
+  let setCollectionSize = props.setCollectionSize;
+
+  //=========================================================================================
+
+  console.log(NFTsApp);
 
   useEffect(() => {
     if (owner) {
-      fetchNFTs(owner, setNFTs, setCollectionSize, setLoading);
+      fetchNFTs(owner, setCollectionSize, setLoading, setNFTsApp);
     }
   }, [owner]);
 
-  console.log(NFTs);
+  console.log(NFTsApp);
+
   const handleClick = () => {
     setOwner(inputValue);
   };
 
-  const handleInput = (event) => {
-    setInputValue(event.target.value);
-  };
-
   const addToWatchListClick = (watchListData) => {
-    setWatchList([...watchList, watchListData]);
-    props.setWatchListData([...watchList, watchListData]);
+    setWatchListApp([...watchListApp, watchListData]);
   };
 
-  console.log(watchList);
+  console.log(watchListApp);
+
   const handleRemoveWatchListItem = (index) => {
-    const watchListArr = watchList.filter((d, i) => i !== index);
-    setWatchList(watchListArr);
+    const watchListArr = watchListApp.filter((d, i) => i !== index);
+    setWatchListApp(watchListArr);
   };
 
   const handleOpenModalDetails = (modalData) => {
@@ -68,7 +73,10 @@ export default function NFT(props) {
                 className="search--input"
                 type="text"
                 placeholder="Enter Wallet Address..."
-                onChange={handleInput}
+                onChange={(event) => {
+                  setInputValue(event.target.value);
+                }}
+                value={inputValue}
               ></input>
               <UilSearch
                 size={30}
@@ -85,9 +93,9 @@ export default function NFT(props) {
                   Digital Galleria {collectionSize ? `- ${collectionSize}` : ""}
                 </h1>
                 <div className="main--nft--collection">
-                  {NFTs ? (
+                  {NFTsApp ? (
                     <div className="nft--collection">
-                      {NFTs.map((NFT) => {
+                      {NFTsApp.map((NFT) => {
                         return (
                           <NFTCard
                             key={NFT.value.title + `${Math.random() * 1000}`}
@@ -131,31 +139,6 @@ export default function NFT(props) {
                           ></NFTCard>
                         );
                       })}
-
-                      {/* {NFTs ? (
-                      NFTs.map((NFT) => {
-                        console.log(NFT);
-                        return (
-                          <NFTCard
-                            key={NFT.value.title + `${Math.random() * 1000}`}
-                            image={NFT.value.image}
-                            id={NFT.value.id}
-                            title={NFT.value.title}
-                            address={NFT.value.contractAddress}
-                            description={NFT.value.description}
-                            attributes={NFT.value.attributes}
-                            supply={NFT.value.supply}
-                            tokenType={NFT.value.tokenType}
-                            floorPrice={NFT.value.floorPrice}
-                            openModal={openModal}
-                            setOpenModal={setOpenModal}
-                            handleOpenModalDetails={handleOpenModalDetails}
-                          ></NFTCard>
-                        );
-                      })
-                    ) : (
-                      <div>No NFTs found</div>
-                    )} */}
                     </div>
                   ) : (
                     <>
@@ -172,7 +155,7 @@ export default function NFT(props) {
                 <h1 className="right--section-header">Watch List</h1>
                 <WatchList
                   key={Math.random() * 1000}
-                  watchList={watchList}
+                  watchListApp={watchListApp}
                   handleOpenModalDetails={handleOpenModalDetails}
                   handleRemoveWatchListItem={handleRemoveWatchListItem}
                 />
