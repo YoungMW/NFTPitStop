@@ -11,17 +11,7 @@ const NFTCard = ({
   tokenType,
   floorPrice,
   handleOpenModalDetails,
-  averagePrice,
-  floorPriceHistory30,
-  priceChange30,
-  totalVolume,
-  statistics,
-  numberOfOwners,
-  totalMinted,
-  marketCap,
-  totalSales,
 }) => {
-  console.log(averagePrice);
   return (
     <>
       <div
@@ -35,16 +25,6 @@ const NFTCard = ({
             description,
             attributes,
             tokenType,
-            averagePrice,
-            floorPriceHistory30,
-            priceChange30,
-            totalVolume,
-            statistics,
-            supply,
-            numberOfOwners,
-            totalMinted,
-            marketCap,
-            totalSales,
           })
         }
       >

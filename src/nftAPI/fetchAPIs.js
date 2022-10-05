@@ -76,27 +76,7 @@ const getNFTsMetaData = async (NFTs) => {
       //   nftFloorPrice = floorPriceDataJSON.openSea.error;
       // }
 
-      const options = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "efaddfe2-8f9c-4c03-a5b8-5a91820e7b19",
-        },
-      };
-
-      const statisticsData = await fetch(
-        `https://api.nftport.xyz/v0/transactions/stats/${metadataJSON.contract.address}?chain=ethereum`,
-        options
-      )
-        .then((statisticsData) => statisticsData.json())
-        .catch((err) => console.error(err));
-
-      let nftStatistics;
-      if (statisticsData) {
-        nftStatistics = statisticsData;
-      } else {
-        nftStatistics = statisticsData.error.code;
-      }
+      //============================================================================================================
 
       return {
         id: NFT.id.tokenId,
@@ -108,8 +88,6 @@ const getNFTsMetaData = async (NFTs) => {
         supply: totalSupply,
         tokenType: tokenType,
         // floorPrice: nftFloorPrice,
-        // statisticsData: statisticsData,
-        statisticsData: nftStatistics,
       };
     })
   );

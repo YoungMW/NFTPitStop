@@ -9,20 +9,16 @@ const WatchListPage = (props) => {
   const [openModalDetails2, setOpenModalDetails2] = useState("");
 
   const x = props.watchListApp;
-  console.log(openModalDetails2);
-  console.log(x);
+
   const handleOpenModal2 = (modalData) => {
-    console.log("I am clicked");
     setOpenModal2(true);
     setOpenModalDetails2(modalData);
+    console.log(modalData);
   };
 
   const closeModal2 = () => {
     setOpenModal2(false);
-    console.log(openModal2);
   };
-
-  console.log(x);
 
   let nftListToWatchPage = x.map((nft, i) => {
     return (
@@ -62,13 +58,23 @@ const WatchListPage = (props) => {
                       Number of owners:
                     </div>
                     <div className="number--of-owners--value">
-                      {nft.numberOfOwners}
+                      {(nft.statistics && nft.statistics.num_owners) ||
+                      (nft.statistics &&
+                        !isNaN(nft.statistics.num_owners) &&
+                        nft.statistics.num_owners !== null)
+                        ? nft.statistics.num_owners
+                        : "Not Found"}
                     </div>
                   </div>
                   <div className="total--minted--box">
                     <div className="total--minted--title">Total minted:</div>
                     <div className="total--minted--value">
-                      {nft.totalMinted}
+                      {(nft.statistics && nft.statistics.total_minted) ||
+                      (nft.statistics &&
+                        !isNaN(nft.statistics.total_minted) &&
+                        nft.statistics.total_minted !== null)
+                        ? nft.statistics.total_minted
+                        : "Not Found"}
                     </div>
                   </div>
                 </div>
@@ -76,15 +82,23 @@ const WatchListPage = (props) => {
                   <div className="marketCap--box">
                     <div className="marketCap--title">Market cap (ETH):</div>
                     <div className="marketCap--value">
-                      {nft.marketCap || !isNaN(nft.marketCap)
-                        ? nft.marketCap
+                      {(nft.statistics && nft.statistics.market_cap) ||
+                      (nft.statistics &&
+                        !isNaN(nft.statistics.market_cap) &&
+                        nft.statistics.market_cap !== null)
+                        ? nft.statistics.market_cap.toFixed(2)
                         : "Not Found"}
                     </div>
                   </div>
                   <div className="marketCap--box">
                     <div className="marketCap--title">Total sales:</div>
                     <div className="marketCap--value">
-                      {nft.totalSales ? nft.totalSales : "Not Found"}
+                      {(nft.statistics && nft.statistics.total_sales) ||
+                      (nft.statistics &&
+                        !isNaN(nft.statistics.total_sales) &&
+                        nft.statistics.total_sales !== null)
+                        ? nft.statistics.total_sales
+                        : "Not Found"}
                     </div>
                   </div>
                 </div>
@@ -95,16 +109,25 @@ const WatchListPage = (props) => {
                 <div className="average--price--box">
                   <div className="statistics--header">Average Price:</div>
                   <div>
-                    {nft.averagePrice && !isNaN(nft.averagePrice)
-                      ? nft.averagePrice.toFixed(4)
+                    {(nft.statistics && nft.statistics.average_price) ||
+                    (nft.statistics &&
+                      !isNaN(nft.statistics.average_price) &&
+                      nft.statistics.average_price !== null)
+                      ? nft.statistics.average_price.toFixed(4)
                       : "Not Found"}
                   </div>
                 </div>
                 <div className="history30--price--box">
                   <div className="statistics--header">Floor Price(30):</div>
                   <div>
-                    {nft.floorPriceHistory30 && !isNaN(nft.floorPriceHistory30)
-                      ? nft.floorPriceHistory30.toFixed(4)
+                    {(nft.statistics &&
+                      nft.statistics.floor_price_historic_thirty_day) ||
+                    (nft.statistics &&
+                      !isNaN(nft.statistics.floor_price_historic_thirty_day) &&
+                      nft.statistics.floor_price_historic_thirty_day !== null)
+                      ? nft.statistics.floor_price_historic_thirty_day.toFixed(
+                          4
+                        )
                       : "Not Found"}
                   </div>
                 </div>
@@ -113,10 +136,13 @@ const WatchListPage = (props) => {
                 <div className="price--change--30">
                   <div className="statistics--header">Price Change(30):</div>
                   <div className="statistics--report">
-                    {nft.priceChange30 && !isNaN(nft.priceChange30) ? (
-                      nft.priceChange30 >= 0 ? (
+                    {(nft.statistics && nft.statistics.thirty_day_change) ||
+                    (nft.statistics &&
+                      !isNaN(nft.statistics.thirty_day_change) &&
+                      nft.statistics.thirty_day_change !== null) ? (
+                      nft.statistics.thirty_day_change >= 0 ? (
                         <>
-                          {nft.priceChange30.toFixed(4)}
+                          {nft.statistics.thirty_day_change.toFixed(4)}
                           <UilArrowGrowth
                             className="price--change--30--arrow--green"
                             size={30}
@@ -124,7 +150,7 @@ const WatchListPage = (props) => {
                         </>
                       ) : (
                         <>
-                          {nft.priceChange30.toFixed(4)}
+                          {nft.statistics.thirty_day_change.toFixed(4)}
                           <UilChartDown
                             className="price--change--30--arrow--red"
                             size={30}
@@ -139,8 +165,11 @@ const WatchListPage = (props) => {
                 <div className="totalVolume">
                   <div className="statistics--header">Total Volume (ETH):</div>
                   <div>
-                    {nft.totalVolume && !isNaN(nft.totalVolume)
-                      ? nft.totalVolume.toFixed(2)
+                    {(nft.statistics && nft.statistics.total_volume) ||
+                    (nft.statistics &&
+                      !isNaN(nft.statistics.total_volume) &&
+                      nft.statistics.total_volume !== null)
+                      ? nft.statistics.total_volume.toFixed(2)
                       : "Not Found"}
                   </div>
                 </div>

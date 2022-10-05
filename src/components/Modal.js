@@ -1,11 +1,13 @@
 import React from "react";
 import { UilHeart } from "@iconscout/react-unicons";
+import { UilCheckCircle } from "@iconscout/react-unicons";
 
 const Modal = (props) => {
-  if (!props.openModal) return null;
+  const openModalDetails = props.openModalDetails;
+  const { statistics } = props.nftPortData;
+  const nextNFTDetails = { ...openModalDetails, statistics };
 
-  let dataToWatchList = props.openModalDetails;
-  console.log(dataToWatchList);
+  if (!props.openModal) return null;
 
   return (
     <div className="overlay">
@@ -15,12 +17,12 @@ const Modal = (props) => {
             size={50}
             className="addToWatchList--Button"
             onClick={() => {
-              props.addToWatchListClick(dataToWatchList);
+              props.addToWatchListClick(nextNFTDetails);
             }}
           ></UilHeart>
           <img
             className="modal--image"
-            src={props.openModalDetails.image}
+            src={openModalDetails.image}
             alt="images"
           />
         </div>
@@ -35,31 +37,29 @@ const Modal = (props) => {
           <div className="title--box">
             <p className="title--header">Title:</p>
             <p className="modal--title">
-              {props.openModalDetails.title
-                ? props.openModalDetails.title
-                : "No Title"}
+              {openModalDetails.title ? openModalDetails.title : "No Title"}
             </p>
           </div>
           <a
-            href={`https://etherscan.io/token/${props.openModalDetails.address}`}
+            href={`https://etherscan.io/token/${openModalDetails.address}`}
             className="modal--nft--contract--address"
-          >{`${props.openModalDetails.address.slice(
+          >{`${openModalDetails.address.slice(
             0,
             4
-          )}...${props.openModalDetails.address.slice(
-            props.openModalDetails.address.length - 4
+          )}...${openModalDetails.address.slice(
+            openModalDetails.address.length - 4
           )}`}</a>
           <div className="description--box">
             <div className="nft--description">
-              {props.openModalDetails.description
-                ? props.openModalDetails.description
+              {openModalDetails.description
+                ? openModalDetails.description
                 : "None"}
             </div>
             <div className="modal--grid--box">
               <div className="modal--attributes--box">
-                {props.openModalDetails.attributes &&
-                Array.isArray(props.openModalDetails.attributes)
-                  ? props.openModalDetails.attributes.map((attri) => {
+                {openModalDetails.attributes &&
+                Array.isArray(openModalDetails.attributes)
+                  ? openModalDetails.attributes.map((attri) => {
                       return (
                         <>
                           <div className="attri--type">{attri.trait_type}:</div>

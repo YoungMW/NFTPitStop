@@ -11,6 +11,9 @@ const NavBar = () => {
         <NavLink className="navBar--links" to="/">
           Home
         </NavLink>
+        <NavLink className="navBar--links" to="/about">
+          About
+        </NavLink>
         <NavLink className="navBar--links" to="/nft">
           NFT
         </NavLink>

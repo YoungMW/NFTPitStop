@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -66,7 +67,92 @@ body {
   /* background: url("./assets/landscape.jpg") no-repeat center center/cover; */
   height: 93vh;
 }
-/*=========================================================================================*/
+
+/* ========================================About Page===========================================*/
+
+.about--page--overview {
+  background-color: rgba(46, 45, 45, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93vh;
+}
+
+.about--page--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+  padding: 1rem;
+  width: 70vw;
+  background-color: rgba(38, 38, 38, 0.7);
+  border: 2px solid black;
+  color: #f1f1f1;
+  box-shadow: 3px 3px rgba(3, 3, 3, 0.4);
+  border-radius: 5px;
+  padding-left: 1%;
+}
+
+.about--title--container {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  margin-bottom: 5%;
+}
+
+.about--title {
+  margin-bottom: 2%;
+}
+
+.about--subheader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+  width: 100%;
+}
+
+.about--subheader--content {
+  font-weight: 200;
+  width: 80%;
+}
+
+.instructions--container {
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+}
+
+.instructions--table {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  width: 100%;
+  grid-row-gap: 10%;
+  margin-left: 2%;
+}
+
+.instructions--individual--box {
+  display: flex;
+}
+
+.instructions--individual--title {
+  color: #f0740d;
+  width: 30%;
+  font-weight: 800;
+}
+
+.instructions--individual--content {
+  width: 60%;
+}
+/*=========================================NFT Page================================================*/
 
 .overview--nft--app {
   display: flex;
@@ -82,8 +168,6 @@ body {
   width: 100%;
   height: 93vh;
   color: rgb(255, 255, 255);
-  /* position: relative; */
-  /* background-color: rgba(0, 0, 0, 0.4); */
 }
 
 /* .nft--app:before {
@@ -282,6 +366,31 @@ body {
   width: 100%;
 }
 
+.overlay2 {
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modalLoading--icon {
+  max-width: 100%;
+  height: 50%;
+  width: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: transparent;
+  /* box-shadow: 0px 0px 20px 0px rgba(5, 5, 5, 0.8); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
 .modal--image {
   height: 100%;
   width: 100%;
@@ -408,6 +517,18 @@ body {
   scale: 1.25;
 }
 
+.addedToWatchList--Button {
+  cursor: pointer;
+  color: rgb(0, 255, 55);
+  position: fixed;
+  top: 4%;
+  left: 3%;
+}
+
+.addedToWatchList--Button:hover {
+  scale: 1.25;
+}
+
 /* ==================================Watch List=================================== */
 
 .watchListCard {
@@ -471,11 +592,13 @@ body {
   box-shadow: 3px 3px rgba(3, 3, 3, 0.4);
   border-radius: 5px;
   padding-left: 1%;
+  transition: width 0.5s, height 0.5s, transform 0s;
 }
 
 .individual--watchListCards:hover {
   scale: 0.99;
   background-color: rgba(0, 0, 0, 0.7);
+  transform: rotate(-0.5deg);
 }
 
 .individual--watchListCard--sections {
