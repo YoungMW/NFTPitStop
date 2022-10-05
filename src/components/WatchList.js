@@ -3,7 +3,7 @@ import { UilTrashAlt } from "@iconscout/react-unicons";
 
 const WatchList = (props) => {
   const x = props.watchListApp;
-  console.log(x);
+
   let nftListToWatch = x.map((data, i) => {
     return (
       <div className="watchListCard">
@@ -41,6 +41,7 @@ const WatchList = (props) => {
       </div>
     );
   });
+
   return <div>{nftListToWatch.slice(0, 5)}</div>;
 };
 

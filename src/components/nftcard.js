@@ -16,6 +16,10 @@ const NFTCard = ({
   priceChange30,
   totalVolume,
   statistics,
+  numberOfOwners,
+  totalMinted,
+  marketCap,
+  totalSales,
 }) => {
   console.log(averagePrice);
   return (
@@ -37,6 +41,10 @@ const NFTCard = ({
             totalVolume,
             statistics,
             supply,
+            numberOfOwners,
+            totalMinted,
+            marketCap,
+            totalSales,
           })
         }
       >

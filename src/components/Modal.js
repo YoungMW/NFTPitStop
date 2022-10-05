@@ -51,7 +51,9 @@ const Modal = (props) => {
           )}`}</a>
           <div className="description--box">
             <div className="nft--description">
-              {props.openModalDetails.description}
+              {props.openModalDetails.description
+                ? props.openModalDetails.description
+                : "None"}
             </div>
             <div className="modal--grid--box">
               <div className="modal--attributes--box">

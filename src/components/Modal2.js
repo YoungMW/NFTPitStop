@@ -29,10 +29,15 @@ const Modal2 = (props) => {
                 : "No Title"}
             </p>
           </div>
-          {/* <a
-            href={`https://etherscan.io/token/${address}`}
+          <a
+            href={`https://etherscan.io/token/${props.openModalDetails2.address}`}
             className="modal--nft--contract--address"
-          >{`${address.slice(0, 4)}...${address.slice(address.length - 4)}`}</a> */}
+          >{`${props.openModalDetails2.address.slice(
+            0,
+            4
+          )}...${props.openModalDetails2.address.slice(
+            props.openModalDetails2.address.length - 4
+          )}`}</a>
           <div className="description--box">
             <div className="nft--description">
               {props.openModalDetails2.description}

@@ -84,23 +84,6 @@ const getNFTsMetaData = async (NFTs) => {
         },
       };
 
-      // setInterval(async () => {
-      //   const statisticsData = await fetch(
-      //     `https://api.nftport.xyz/v0/transactions/stats/${metadataJSON.contract.address}?chain=ethereum`,
-      //     options
-      //   )
-      //     .then((statisticsData) => statisticsData.json())
-      //     .catch((err) => console.error(err));
-
-      //   let nftStatistics;
-      //   if (statisticsData) {
-      //     nftStatistics = statisticsData;
-      //   } else {
-      //     nftStatistics = statisticsData.error.code;
-      //   }
-      //   console.log(nftStatistics);
-      // }, 2000);
-
       const statisticsData = await fetch(
         `https://api.nftport.xyz/v0/transactions/stats/${metadataJSON.contract.address}?chain=ethereum`,
         options
@@ -114,8 +97,6 @@ const getNFTsMetaData = async (NFTs) => {
       } else {
         nftStatistics = statisticsData.error.code;
       }
-      console.log(nftStatistics);
-      console.log(statisticsData);
 
       return {
         id: NFT.id.tokenId,
@@ -152,6 +133,7 @@ const fetchNFTs = async (owner, setCollectionSize, setLoading, setNFTsApp) => {
       let fulfilledNFTs = NFTs.filter((NFT) => NFT.status == "fulfilled");
       setLoading(false);
       setNFTsApp(fulfilledNFTs);
+      console.log(fulfilledNFTs);
     } else {
       setNFTsApp(null);
     }
