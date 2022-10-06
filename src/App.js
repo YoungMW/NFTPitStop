@@ -72,6 +72,7 @@ export default function App() {
           element={
             <WatchListPage
               watchListApp={watchListApp}
+              setWatchListApp={setWatchListApp}
               handleRemoveWatchPageItem={handleRemoveWatchPageItem}
             />
           }

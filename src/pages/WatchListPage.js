@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { UilArrowGrowth } from "@iconscout/react-unicons";
 import { UilChartDown } from "@iconscout/react-unicons";
 import { UilTrashAlt } from "@iconscout/react-unicons";
+import { UilArrowUp } from "@iconscout/react-unicons";
 import Modal2 from "../components/Modal2";
+import cryptopunk from "../assets/cryptopunk1.png";
+import cryptopunk2 from "../assets/cryptopunk2.png";
 
 const WatchListPage = (props) => {
   const [openModal2, setOpenModal2] = useState(false);
   const [openModalDetails2, setOpenModalDetails2] = useState("");
+  const [filterClicked, setFilterClicked] = useState(false);
+  const [filterAvgPriceClicked, setfilterAvgPriceClicked] = useState(false);
 
   const x = props.watchListApp;
 
@@ -15,10 +20,104 @@ const WatchListPage = (props) => {
     setOpenModalDetails2(modalData);
     console.log(modalData);
   };
-
+  console.log(x);
   const closeModal2 = () => {
     setOpenModal2(false);
   };
+
+  //=============================sorting by prices===================================
+  //=================================================================================
+
+  const sortByPrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.thirty_day_change &&
+            isNaN(e.statistics.thirty_day_change))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].sort(
+        (a, b) =>
+          a.statistics.thirty_day_change - b.statistics.thirty_day_change
+      );
+      props.setWatchListApp(sortedArray);
+      setFilterClicked(true);
+    }
+  };
+
+  const sortByReversePrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.thirty_day_change &&
+            isNaN(e.statistics.thirty_day_change))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].reverse(
+        (a, b) =>
+          a.statistics.thirty_day_change - b.statistics.thirty_day_change
+      );
+      props.setWatchListApp(sortedArray);
+      setFilterClicked(false);
+    }
+  };
+
+  //=============================sorting by avg prices===================================
+  //=================================================================================
+
+  const sortByAvgPrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.average_price && isNaN(e.statistics.average_price))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].sort(
+        (a, b) => a.statistics.average_price - b.statistics.average_price
+      );
+      props.setWatchListApp(sortedArray);
+      setfilterAvgPriceClicked(true);
+    }
+  };
+
+  const sortByReverseAvgPrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.average_price && isNaN(e.statistics.average_price))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].reverse(
+        (a, b) => a.statistics.average_price - b.statistics.average_price
+      );
+      props.setWatchListApp(sortedArray);
+      setfilterAvgPriceClicked(false);
+    }
+  };
+
+  //=============================================================================================
+  //=============================================================================================
+  //=======================Creating the WatchList Page by mapping================================
 
   let nftListToWatchPage = x.map((nft, i) => {
     return (
@@ -187,8 +286,47 @@ const WatchListPage = (props) => {
     );
   });
 
+  //=============================================================================================
+  //=============================================================================================
+
   return (
     <>
+      {x.length ? (
+        <div className="filters-bar">
+          <div className="filters--buttons">
+            <button
+              className="filters--button"
+              onClick={() => {
+                if (filterClicked) {
+                  sortByReversePrice();
+                } else {
+                  sortByPrice();
+                }
+              }}
+            >
+              Filter by Price <UilArrowUp />
+            </button>
+            <button
+              className="filters--button"
+              onClick={() => {
+                if (filterAvgPriceClicked) {
+                  sortByReverseAvgPrice();
+                } else {
+                  sortByAvgPrice();
+                }
+              }}
+            >
+              Filter by Average Price <UilArrowUp />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <img src={cryptopunk} className="cryptopunk--image" alt="images" />
+          <img src={cryptopunk2} className="cryptopunk--image2" alt="images" />
+        </div>
+      )}
+
       <div className="watchListPage--container">
         <div>
           {x.length !== 0 ? (

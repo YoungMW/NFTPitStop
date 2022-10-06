@@ -1,4 +1,6 @@
 import React from "react";
+import bayc from "../assets/baycnft.png";
+import azuki from "../assets/azuki.png";
 
 const About = () => {
   return (
@@ -11,8 +13,8 @@ const About = () => {
               With just the Wallet Address you can View and Share NFT
               Collections! Keep track of your favourite NFTs' market trends by
               adding them into your Watchlist! Information as shown below can be
-              found in your Watchlist cards and they are data relating to the
-              NFT <b>Collection</b>.
+              found in your Watchlist cards and are data relating to the NFT{" "}
+              <b>Collection</b>.
             </p>
           </div>
         </div>
@@ -76,7 +78,10 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* <img src="./assets/baycnft.png" alt="images" /> */}
+      <div className="about--images">
+        <img src={bayc} alt="images" className="about--image--bayc" />
+        <img src={azuki} alt="images" className="about--image--azuki" />
+      </div>
     </div>
   );
 };

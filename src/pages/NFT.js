@@ -8,6 +8,8 @@ import ClipLoader from "react-spinners/HashLoader";
 import ClipLoader2 from "react-spinners/PulseLoader";
 
 export default function NFT(props) {
+  //=============================================================================================
+  //=============================================================================================
   //====================================States==============================================
 
   const [openModal, setOpenModal] = useState(false); //opening Modal - True or False
@@ -39,6 +41,8 @@ export default function NFT(props) {
   } = props;
 
   //=============================================================================================
+  //=============================================================================================
+  //=============================Fetching NFT Port Market Data===================================
   const getNFTsPortData = async (address) => {
     setModalLoading(true);
     console.log(modalLoading);
@@ -71,23 +75,28 @@ export default function NFT(props) {
       setModalLoading(false);
     }
   };
+
+  //=============================================================================================
   //=============================================================================================
 
-  console.log(nftPortData);
   const handleClick = () => {
+    //setting owner as the wallet addressed key in by user
     setOwner(inputValue);
   };
 
   const addToWatchListClick = (watchListData) => {
+    //pushing in data to an WatchList Array for population
     setWatchListApp([...watchListApp, watchListData]);
   };
 
   const handleRemoveWatchListItem = (index) => {
-    const watchListArr = watchListApp.filter((d, i) => i !== index);
+    //removing item from WatchList Array via index filtering
+    const watchListArr = watchListApp.filter((d, i) => d.id !== index);
     setWatchListApp(watchListArr);
   };
 
   const handleOpenModalDetails = async (modalData) => {
+    //Opening Modal and running a fetch async function to retreive market data
     console.log(modalLoading);
     await getNFTsPortData(modalData.address);
     setOpenModalDetails(modalData);
@@ -97,6 +106,9 @@ export default function NFT(props) {
   const closeModal = () => {
     setOpenModal(false);
   };
+
+  //=============================================================================================
+  //=============================================================================================
 
   return (
     <>
@@ -199,6 +211,8 @@ export default function NFT(props) {
                   openModalDetails={openModalDetails}
                   addToWatchListClick={addToWatchListClick}
                   nftPortData={nftPortData}
+                  watchListApp={watchListApp}
+                  handleRemoveWatchListItem={handleRemoveWatchListItem}
                 />
               )}
             </div>

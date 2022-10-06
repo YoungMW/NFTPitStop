@@ -36,7 +36,7 @@ const WatchList = (props) => {
           className="watchListCard--delete--button"
           size={40}
           key={i}
-          onClick={() => props.handleRemoveWatchListItem(i)}
+          onClick={() => props.handleRemoveWatchListItem(data.id)}
         />
       </div>
     );
