@@ -13,11 +13,10 @@ APIs from Alchemy and NFTPort were used to tabulate the relevant data.
 * [Navigation Bar Component](#navbar)
 * [NFT Component](#nft)
 * [WatchList Page Component](#watchlistpage)
-3. [ Child Components Creation ](#childcomponents)
+3. [Child Components Creation](#childcomponents)
 * [NFT Cards Component](#nftcards)
 * [Modals Component](#modals)
 * [WatchList Component](#watchlist)
-4. [ Page Routings ](#routings)
 
 <a name="desc"></a>
 ## 1. Application Description
@@ -30,11 +29,11 @@ With just the Wallet Address you can View & Share NFT Collections and keep track
 <p>The Components are the foundation for this application and will be pieced together to form the final product.</p>
 
 <p>Some of the parent components include:</p>
-<li>App</li>
-<li>Home</li>
-<li>About</li>
-<li>Navigation Bar</li>
-<li>NFT</li>
+<li>App Component</li>
+<li>Home Component</li>
+<li>About Component</li>
+<li>Navigation Bar Component</li>
+<li>NFT Component</li>
 
 <a name="app"></a>
 <h3>2.1. App Component</h3>
@@ -438,3 +437,312 @@ let nftListToWatchPage = x.map((nft, i) => {
 <p>Filter buttons are implemented to allow users to filter between highest price changes-lower price changes and more.</p>
 
 <p>This is done by the find() method, ceiving through the array and implementing multiple conditional statements to achieve the necessary sorting as required by the user.</p>
+
+```
+const sortByPrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.thirty_day_change &&
+            isNaN(e.statistics.thirty_day_change))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].sort(
+        (a, b) =>
+          a.statistics.thirty_day_change - b.statistics.thirty_day_change
+      );
+      props.setWatchListApp(sortedArray);
+      setFilterClicked(true);
+    }
+  };
+
+  const sortByReversePrice = () => {
+    if (
+      x.find(
+        (e) =>
+          !e.statistics ||
+          (!e.statistics.thirty_day_change &&
+            isNaN(e.statistics.thirty_day_change))
+      )
+    ) {
+      alert(
+        "One or more of the prices is not found, unable to filter. Please try again."
+      );
+    } else {
+      const sortedArray = [...x].reverse(
+        (a, b) =>
+          a.statistics.thirty_day_change - b.statistics.thirty_day_change
+      );
+      props.setWatchListApp(sortedArray);
+      setFilterClicked(false);
+    }
+  };
+
+```
+
+
+<a name="childcomponents"></a>
+## 3. Child Components Creation
+<p>These Components are the tiny blocks that hold the application together.</p>
+
+<p>Some of the parent components include:</p>
+<li>NFT Cards Component</li>
+<li>Modals Component</li>
+<li>WatchList Component</li>
+
+
+<a name="nftcards"></a>
+<h3>3.1. NFT Cards Component</h3>
+<p>The NFT Cards Component holds individual NFT details as shown below and are displayed using flex box/grid for the user to admire. The details are fetched from Alchemy's API using the wallet address keyed in by the user upon submitted a search.</p>
+
+```
+import React from "react";
+
+const NFTCard = ({
+  image,
+  id,
+  title,
+  address,
+  description,
+  attributes,
+  supply,
+  tokenType,
+  floorPrice,
+  handleOpenModalDetails,
+}) => {
+  return (
+    <>
+      <div
+        className="nft--card"
+        onClick={() =>
+          handleOpenModalDetails({
+            id,
+            title,
+            address,
+            image,
+            description,
+            attributes,
+            tokenType,
+          })
+        }
+      >
+```
+
+<p>The NFT Cards display code is shown below.</p>
+
+
+```
+     <div
+        className="nft--card"
+        onClick={() =>
+          handleOpenModalDetails({
+            id,
+            title,
+            address,
+            image,
+            description,
+            attributes,
+            tokenType,
+          })
+        }
+      >
+        <img className="nft--images" src={image} alt={"Images"}></img>
+        <div className="nft--card--description--container">
+          <div className="nft--card--description--left--container">
+            <div className="nft--title">
+              <p className="description-mini-headers">Title:</p>
+              <p className="description-mini-texts">{title ? title : "NIL"}</p>
+            </div>
+            <div className="nft--supply">
+              <p className="description-mini-headers">Total Supply:</p>
+              <p className="description-mini-texts">
+                {supply ? supply : "NIL"}
+              </p>
+            </div>
+          </div>
+          <div className="nft--card--description--right--container">
+            <div className="nft--token">
+              <p className="description-mini-headers">Floor Price:</p>
+              <p className="description-mini-texts">
+                {/* {floorPrice ? floorPrice : "NIL"} */}
+                Not Available
+              </p>
+            </div>
+            <div className="nft--token">
+              <p className="description-mini-headers">Token Type:</p>
+              <p className="description-mini-texts">
+                {tokenType ? tokenType : "NIL"}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+```
+
+
+
+<a name="modals"></a>
+<h3>3.2. Modals Component</h3>
+<p>The Modals Component is an "pop-up window" that showcases details such as NFT attributes, Etherscan links and Add-to-WatchList buttons. These details are from Alchemy's API using the same fetching method as mentioned above.</p>
+
+<p>The Add-to-WatchList button triggers the isFav() function that pushes this data into the WatchList array, changing the heart icon into a checked icon by using conditional statements. This conditional statements further supplement the removal of NFT by ID from the WatchList when the user clicks the button again.</p>
+
+
+
+```
+const isFav = () =>
+props.watchListApp.find((e) => e.id === nextNFTDetails.id);  
+```
+
+
+<p> The openModal conditional statement is used to determine whether the modal opens </p>
+
+```
+const Modal = (props) => {
+  const openModalDetails = props.openModalDetails;
+  const { statistics } = props.nftPortData;
+  const nextNFTDetails = { ...openModalDetails, statistics };
+
+  if (!props.openModal) return null;
+```
+
+
+<p>The Modal display code is shown below.</p>
+
+
+
+```
+ <div className="overlay">
+      <div className="modal--container">
+        <div className="modal--image--container">
+          {isFav() ? (
+            <UilCheckCircle
+              size={50}
+              className="addedToWatchList--Button"
+              onClick={() => props.handleRemoveWatchListItem(nextNFTDetails.id)}
+            ></UilCheckCircle>
+          ) : (
+            <UilHeart
+              size={50}
+              className="addToWatchList--Button"
+              onClick={() => {
+                props.addToWatchListClick(nextNFTDetails);
+              }}
+            ></UilHeart>
+          )}
+          <img
+            className="modal--image"
+            src={openModalDetails.image}
+            alt="images"
+          />
+        </div>
+        <div className="modal--Right">
+          <button
+            onClick={props.closeModal}
+            id="modal--closeButton"
+            className="modal--closeButton"
+          >
+            &times;
+          </button>
+          <div className="title--box">
+            <p className="title--header">Title:</p>
+            <p className="modal--title">
+              {openModalDetails.title ? openModalDetails.title : "No Title"}
+            </p>
+          </div>
+          <a
+            href={`https://etherscan.io/token/${openModalDetails.address}`}
+            className="modal--nft--contract--address"
+          >{`${openModalDetails.address.slice(
+            0,
+            4
+          )}...${openModalDetails.address.slice(
+            openModalDetails.address.length - 4
+          )}`}</a>
+          <div className="description--box">
+            <div className="nft--description">
+              {openModalDetails.description
+                ? openModalDetails.description
+                : "None"}
+            </div>
+            <div className="modal--grid--box">
+              <div className="modal--attributes--box">
+                {openModalDetails.attributes &&
+                Array.isArray(openModalDetails.attributes)
+                  ? openModalDetails.attributes.map((attri) => {
+                      return (
+                        <>
+                          <div className="attri--type">{attri.trait_type}:</div>
+                          <div className="attri--value">{attri.value}</div>
+                        </>
+                      );
+                    })
+                  : "None"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+```
+
+
+
+<a name="watchlist"></a>
+<h3>3.3. WatchList Component</h3>
+<p>The WatchList Component is a mini sidebar for easy access to the first 5 "favourite-ed" NFTs. It allows the user to have instant access to details such as the title, name, attributes, Etherscan link and more</p>
+
+<p>Each favourite-ed NFT is mapped into the nftListToWatch array with data propped from the grandparent App Component. The code is shown below.</p>
+
+```
+const WatchList = (props) => {
+  const x = props.watchListApp;
+
+  let nftListToWatch = x.map((data, i) => {
+    return (
+      <div className="watchListCard">
+        <div
+          className="watchListCard--components"
+          onClick={() =>
+            props.handleOpenModalDetails({
+              id: data.id,
+              title: data.title,
+              address: data.address,
+              image: data.image,
+              description: data.description,
+              attributes: data.attributes,
+              tokenType: data.tokenType,
+              averagePrice: data.averagePrice,
+              floorPriceHistory30: data.floorPriceHistory30,
+              priceChange30: data.priceChange30,
+              totalVolume: data.totalVolume,
+              statistics: data.statistics,
+            })
+          }
+        >
+          <img src={data.image} className="watchListImage" alt="Images"></img>
+          <div className="watchListCard--Title">
+            <p>{data.title ? data.title : "NIL"}</p>
+            <p>{data.tokenType}</p>
+          </div>
+        </div>
+        <UilTrashAlt
+          className="watchListCard--delete--button"
+          size={40}
+          key={i}
+          onClick={() => props.handleRemoveWatchListItem(data.id)}
+        />
+      </div>
+    );
+  });
+
+  return <div>{nftListToWatch.slice(0, 5)}</div>;
+};
+```
+
+
