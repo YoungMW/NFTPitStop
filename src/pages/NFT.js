@@ -16,17 +16,6 @@ export default function NFT(props) {
   const [openModalDetails, setOpenModalDetails] = useState(""); //opening Modal - True or False
   const [modalLoading, setModalLoading] = useState(false);
 
-  // let NFTsApp = props.NFTsApp;
-  // let watchListApp = props.watchListApp;
-  // let setWatchListApp = props.setWatchListApp;
-  // let collectionSize = props.collectionSize;
-  // let inputValue = props.inputValue;
-  // let setInputValue = props.setInputValue;
-  // let setOwner = props.setOwner;
-  // let loading = props.loading;
-  // let nftPortData = props.nftPortData;
-  // let setNftPortData = props.setNftPortData;
-
   const {
     NFTsApp,
     watchListApp,
