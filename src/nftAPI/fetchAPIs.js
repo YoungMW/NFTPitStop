@@ -1,7 +1,8 @@
 const baseUrl =
   "https://eth-mainnet.g.alchemy.com/v2/aI_cBhmYAlW4vQpliiy2kfOUZCmtYC9m";
 
-//================================fetching Owner's NFT array using wallet address================================
+//================================fetching Owner's NFT array using wallet address================================================================
+//===============================================================================================================================================
 const getAddressNFTs = async (owner) => {
   if (owner) {
     let data;
@@ -14,7 +15,9 @@ const getAddressNFTs = async (owner) => {
   }
 };
 
-//================================fetching each individual NFT Meta Data using contract addresses - NFT.contract.address
+//=============================fetching each individual NFT Meta Data using contract addresses - NFT.contract.address================================
+//===================================================================================================================================================
+
 const getNFTsMetaData = async (NFTs) => {
   const NFTsMetaData = await Promise.allSettled(
     NFTs.map(async (NFT) => {
@@ -76,8 +79,8 @@ const getNFTsMetaData = async (NFTs) => {
       //   nftFloorPrice = floorPriceDataJSON.openSea.error;
       // }
 
-      //=============================================================================================
-      //=============================================================================================
+      //=============================================================================================================================
+      //=============================================================================================================================
       return {
         id: NFT.id.tokenId,
         contractAddress: NFT.contract.address,
@@ -96,6 +99,7 @@ const getNFTsMetaData = async (NFTs) => {
 };
 
 //========================Fecthing the data from the above 3 APIs to consolidate meta data and floor price================================
+//========================================================================================================================================
 
 const fetchNFTs = async (owner, setCollectionSize, setLoading, setNFTsApp) => {
   setLoading(true);

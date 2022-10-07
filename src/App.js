@@ -22,7 +22,6 @@ export default function App() {
     setWatchListApp(watchListPageArr);
   };
 
-  console.log(NFTsApp);
   console.log(watchListApp);
 
   useEffect(() => {

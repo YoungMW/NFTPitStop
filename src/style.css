@@ -83,7 +83,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 1rem;
   width: 70vw;
   background-color: rgba(38, 38, 38, 0.7);
   border: 2px solid black;
@@ -91,6 +90,7 @@ body {
   box-shadow: 3px 3px rgba(3, 3, 3, 0.4);
   border-radius: 5px;
   padding-left: 1%;
+  margin-bottom: 10%;
 }
 
 .about--title--container {
@@ -160,16 +160,22 @@ body {
   position: absolute;
   display: flex;
   bottom: 0%;
-  justify-content: space-between;
+  overflow: hidden;
 }
 .about--image--bayc {
   width: 40%;
-  position: relative;
   right: 10%;
 }
 .about--image--azuki {
-  width: 25%;
-  right: 50%;
+  position: relative;
+  left: 40%;
+  width: 30%;
+}
+
+.about--image--invisiblefriends {
+  position: relative;
+  right: 5%;
+  width: 35%;
 }
 /*=========================================NFT Page================================================*/
 

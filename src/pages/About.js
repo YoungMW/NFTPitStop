@@ -1,6 +1,7 @@
 import React from "react";
 import bayc from "../assets/baycnft.png";
 import azuki from "../assets/azuki.png";
+import invisibleGIF from "../assets/invisiblefriends.gif";
 
 const About = () => {
   return (
@@ -79,7 +80,12 @@ const About = () => {
         </div>
       </div>
       <div className="about--images">
-        <img src={bayc} alt="images" className="about--image--bayc" />
+        <img
+          src={invisibleGIF}
+          alt="images"
+          className="about--image--invisiblefriends"
+        />
+        {/* <img src={bayc} alt="images" className="about--image--bayc" /> */}
         <img src={azuki} alt="images" className="about--image--azuki" />
       </div>
     </div>
